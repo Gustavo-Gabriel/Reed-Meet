@@ -18,6 +18,11 @@
 		F19E06262787B6E900D4D811 /* Reed_MeetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19E06252787B6E900D4D811 /* Reed_MeetTests.swift */; };
 		F19E06302787B6E900D4D811 /* Reed_MeetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19E062F2787B6E900D4D811 /* Reed_MeetUITests.swift */; };
 		F19E06322787B6E900D4D811 /* Reed_MeetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19E06312787B6E900D4D811 /* Reed_MeetUITestsLaunchTests.swift */; };
+		F1BD2C2A2788C6E40024E7DC /* AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD2C292788C6E40024E7DC /* AutoLayout.swift */; };
+		F1BD2C2C2788C78A0024E7DC /* NSLayoutConstraintType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD2C2B2788C78A0024E7DC /* NSLayoutConstraintType.swift */; };
+		F1BD2C2E2788C7B70024E7DC /* NSLayoutConstraint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD2C2D2788C7B70024E7DC /* NSLayoutConstraint+Ext.swift */; };
+		F1BD2C302788C7F50024E7DC /* AutoLayout+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD2C2F2788C7F50024E7DC /* AutoLayout+Ext.swift */; };
+		F1BD2C332788C9450024E7DC /* AutoLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD2C322788C9450024E7DC /* AutoLayoutTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +65,11 @@
 		F19E062F2787B6E900D4D811 /* Reed_MeetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reed_MeetUITests.swift; sourceTree = "<group>"; };
 		F19E06312787B6E900D4D811 /* Reed_MeetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reed_MeetUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F19E063E2787C3ED00D4D811 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		F1BD2C292788C6E40024E7DC /* AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayout.swift; sourceTree = "<group>"; };
+		F1BD2C2B2788C78A0024E7DC /* NSLayoutConstraintType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintType.swift; sourceTree = "<group>"; };
+		F1BD2C2D2788C7B70024E7DC /* NSLayoutConstraint+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Ext.swift"; sourceTree = "<group>"; };
+		F1BD2C2F2788C7F50024E7DC /* AutoLayout+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoLayout+Ext.swift"; sourceTree = "<group>"; };
+		F1BD2C322788C9450024E7DC /* AutoLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +149,7 @@
 		F19E060D2787B6E600D4D811 /* Reed&Meet */ = {
 			isa = PBXGroup;
 			children = (
+				F1BD2C272788C6AD0024E7DC /* Common */,
 				F19E060E2787B6E600D4D811 /* AppDelegate.swift */,
 				F19E06102787B6E600D4D811 /* SceneDelegate.swift */,
 				F19E06122787B6E600D4D811 /* ViewController.swift */,
@@ -152,6 +163,7 @@
 		F19E06242787B6E900D4D811 /* Reed&MeetTests */ = {
 			isa = PBXGroup;
 			children = (
+				F1BD2C312788C92F0024E7DC /* Common */,
 				F19E06252787B6E900D4D811 /* Reed_MeetTests.swift */,
 			);
 			path = "Reed&MeetTests";
@@ -164,6 +176,33 @@
 				F19E06312787B6E900D4D811 /* Reed_MeetUITestsLaunchTests.swift */,
 			);
 			path = "Reed&MeetUITests";
+			sourceTree = "<group>";
+		};
+		F1BD2C272788C6AD0024E7DC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F1BD2C282788C6D20024E7DC /* AutoLayout */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		F1BD2C282788C6D20024E7DC /* AutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				F1BD2C292788C6E40024E7DC /* AutoLayout.swift */,
+				F1BD2C2B2788C78A0024E7DC /* NSLayoutConstraintType.swift */,
+				F1BD2C2D2788C7B70024E7DC /* NSLayoutConstraint+Ext.swift */,
+				F1BD2C2F2788C7F50024E7DC /* AutoLayout+Ext.swift */,
+			);
+			path = AutoLayout;
+			sourceTree = "<group>";
+		};
+		F1BD2C312788C92F0024E7DC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F1BD2C322788C9450024E7DC /* AutoLayoutTests.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,9 +443,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1BD2C2C2788C78A0024E7DC /* NSLayoutConstraintType.swift in Sources */,
+				F1BD2C2E2788C7B70024E7DC /* NSLayoutConstraint+Ext.swift in Sources */,
 				F19E06132787B6E600D4D811 /* ViewController.swift in Sources */,
 				F19E060F2787B6E600D4D811 /* AppDelegate.swift in Sources */,
+				F1BD2C2A2788C6E40024E7DC /* AutoLayout.swift in Sources */,
 				F19E06112787B6E600D4D811 /* SceneDelegate.swift in Sources */,
+				F1BD2C302788C7F50024E7DC /* AutoLayout+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1BD2C332788C9450024E7DC /* AutoLayoutTests.swift in Sources */,
 				F19E06262787B6E900D4D811 /* Reed_MeetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
