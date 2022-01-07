@@ -1,64 +1,81 @@
-import Foundation
-
-public func allPass<T,U where U: SequenceType, U.Generator.Element == T>
-    (passFunc: (T?) -> Bool) -> NonNilMatcherFunc<U> {
-        return allPass("pass a condition", passFunc)
+public func allPass<S: Sequence>(
+    _ passFunc: @escaping (S.Element?) throws -> Bool
+) -> Predicate<S> {
+    let matcher = Predicate.simpleNilable("pass a condition") { actualExpression in
+        return PredicateStatus(bool: try passFunc(try actualExpression.evaluate()))
+    }
+    return createPredicate(matcher)
 }
 
-public func allPass<T,U where U: SequenceType, U.Generator.Element == T>
-    (passName: String, _ passFunc: (T?) -> Bool) -> NonNilMatcherFunc<U> {
-        return createAllPassMatcher() {
-            expression, failureMessage in
-            failureMessage.postfixMessage = passName
-            return passFunc(try expression.evaluate())
+public func allPass<S: Sequence>(
+    _ passName: String,
+    _ passFunc: @escaping (S.Element?) throws -> Bool
+) -> Predicate<S> {
+    let matcher = Predicate.simpleNilable(passName) { actualExpression in
+        return PredicateStatus(bool: try passFunc(try actualExpression.evaluate()))
+    }
+    return createPredicate(matcher)
+}
+
+@available(*, deprecated, message: "Use Predicate instead")
+public func allPass<S: Sequence, M: Matcher>(_ elementMatcher: M) -> Predicate<S> where S.Element == M.ValueType {
+    return createPredicate(elementMatcher.predicate)
+}
+
+public func allPass<S: Sequence>(_ elementPredicate: Predicate<S.Element>) -> Predicate<S> {
+    return createPredicate(elementPredicate)
+}
+
+private func createPredicate<S: Sequence>(_ elementMatcher: Predicate<S.Element>) -> Predicate<S> {
+    return Predicate { actualExpression in
+        guard let actualValue = try actualExpression.evaluate() else {
+            return PredicateResult(
+                status: .fail,
+                message: .appends(.expectedTo("all pass"), " (use beNil() to match nils)")
+            )
         }
-}
 
-public func allPass<U,V where U: SequenceType, V: Matcher, U.Generator.Element == V.ValueType>
-    (matcher: V) -> NonNilMatcherFunc<U> {
-        return createAllPassMatcher() {
-            try matcher.matches($0, failureMessage: $1)
-        }
-}
-
-private func createAllPassMatcher<T,U where U: SequenceType, U.Generator.Element == T>
-    (elementEvaluator:(Expression<T>, FailureMessage) throws -> Bool) -> NonNilMatcherFunc<U> {
-        return NonNilMatcherFunc { actualExpression, failureMessage in
-            failureMessage.actualValue = nil
-            if let actualValue = try actualExpression.evaluate() {
-                for currentElement in actualValue {
-                    let exp = Expression(
-                        expression: {currentElement}, location: actualExpression.location)
-                    if try !elementEvaluator(exp, failureMessage) {
-                        failureMessage.postfixMessage =
-                            "all \(failureMessage.postfixMessage),"
-                            + " but failed first at element <\(stringify(currentElement))>"
-                            + " in <\(stringify(actualValue))>"
-                        return false
-                    }
-                }
-                failureMessage.postfixMessage = "all \(failureMessage.postfixMessage)"
+        var failure: ExpectationMessage = .expectedTo("all pass")
+        for currentElement in actualValue {
+            let exp = Expression(
+                expression: {currentElement}, location: actualExpression.location)
+            let predicateResult = try elementMatcher.satisfies(exp)
+            if predicateResult.status == .matches {
+                failure = predicateResult.message.prepended(expectation: "all ")
             } else {
-                failureMessage.postfixMessage = "all pass (use beNil() to match nils)"
-                return false
+                failure = predicateResult.message
+                    .replacedExpectation({ .expectedTo($0.expectedMessage) })
+                    .wrappedExpectation(
+                        before: "all ",
+                        after: ", but failed first at element <\(stringify(currentElement))>"
+                            + " in <\(stringify(actualValue))>"
+                )
+                return PredicateResult(status: .doesNotMatch, message: failure)
             }
-            
-            return true
         }
+        failure = failure.replacedExpectation({ expectation in
+            return .expectedTo(expectation.expectedMessage)
+        })
+        return PredicateResult(status: .matches, message: failure)
+    }
 }
 
-#if _runtime(_ObjC)
-extension NMBObjCMatcher {
-    public class func allPassMatcher(matcher: NMBObjCMatcher) -> NMBObjCMatcher {
-        return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
+#if canImport(Darwin)
+import class Foundation.NSObject
+import struct Foundation.NSFastEnumerationIterator
+import protocol Foundation.NSFastEnumeration
+
+extension NMBPredicate {
+    @objc public class func allPassMatcher(_ matcher: NMBMatcher) -> NMBPredicate {
+        return NMBPredicate { actualExpression in
             let location = actualExpression.location
-            let actualValue = try! actualExpression.evaluate()
+            let actualValue = try actualExpression.evaluate()
             var nsObjects = [NSObject]()
-            
+
             var collectionIsUsable = true
             if let value = actualValue as? NSFastEnumeration {
-                let generator = NSFastGenerator(value)
-                while let obj:AnyObject = generator.next() {
+                var generator = NSFastEnumerationIterator(value)
+                while let obj = generator.next() {
                     if let nsObject = obj as? NSObject {
                         nsObjects.append(nsObject)
                     } else {
@@ -69,23 +86,37 @@ extension NMBObjCMatcher {
             } else {
                 collectionIsUsable = false
             }
-            
+
             if !collectionIsUsable {
-                failureMessage.postfixMessage =
-                  "allPass only works with NSFastEnumeration (NSArray, NSSet, ...) of NSObjects"
-                failureMessage.expected = ""
-                failureMessage.to = ""
-                return false
+                return NMBPredicateResult(
+                    status: NMBPredicateStatus.fail,
+                    message: NMBExpectationMessage(
+                        // swiftlint:disable:next line_length
+                        fail: "allPass can only be used with types which implement NSFastEnumeration (NSArray, NSSet, ...), and whose elements subclass NSObject, got <\(actualValue?.description ?? "nil")>"
+                    )
+                )
             }
-            
+
             let expr = Expression(expression: ({ nsObjects }), location: location)
-            let elementEvaluator: (Expression<NSObject>, FailureMessage) -> Bool = {
-                expression, failureMessage in
-                return matcher.matches(
-                    {try! expression.evaluate()}, failureMessage: failureMessage, location: expr.location)
-            }
-            return try! createAllPassMatcher(elementEvaluator).matches(
-                expr, failureMessage: failureMessage)
+            let pred: Predicate<[NSObject]> = createPredicate(Predicate { expr in
+                if let predicate = matcher as? NMBPredicate {
+                    return predicate.satisfies(({ try expr.evaluate() }), location: expr.location).toSwift()
+                } else {
+                    let failureMessage = FailureMessage()
+                    let result = matcher.matches(
+                        // swiftlint:disable:next force_try
+                        ({ try! expr.evaluate() }),
+                        failureMessage: failureMessage,
+                        location: expr.location
+                    )
+                    let expectationMsg = failureMessage.toExpectationMessage()
+                    return PredicateResult(
+                        bool: result,
+                        message: expectationMsg
+                    )
+                }
+            })
+            return try pred.satisfies(expr).toObjectiveC()
         }
     }
 }

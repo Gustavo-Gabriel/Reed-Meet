@@ -4,7 +4,7 @@ PODS:
   - iOSSnapshotTestCase/Core (8.0.0)
   - iOSSnapshotTestCase/SwiftSupport (8.0.0):
     - iOSSnapshotTestCase/Core
-  - Nimble (4.0.1)
+  - Nimble (9.2.1)
   - Nimble-Snapshots (9.3.0):
     - Nimble-Snapshots/Core (= 9.3.0)
   - Nimble-Snapshots/Core (9.3.0):
@@ -29,7 +29,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   iOSSnapshotTestCase: a670511f9ee3829c2b9c23e6e68f315fd7b6790f
-  Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
+  Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
   Nimble-Snapshots: 97270cd48f0e6eebd6c80ccf7dd35d4e57fb9997
   Quick: 6473349e43b9271a8d43839d9ba1c442ed1b7ac4
   SwiftLint: 06ac37e4d38c7068e0935bb30cda95f093bec761

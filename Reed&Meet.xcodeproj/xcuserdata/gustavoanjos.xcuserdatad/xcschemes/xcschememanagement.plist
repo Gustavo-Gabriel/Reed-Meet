@@ -7,7 +7,25 @@
 		<key>Reed&amp;Meet.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>F19E060A2787B6E600D4D811</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F19E06202787B6E900D4D811</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F19E062A2787B6E900D4D811</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
