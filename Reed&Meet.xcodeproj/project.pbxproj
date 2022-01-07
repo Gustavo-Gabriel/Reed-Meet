@@ -49,6 +49,7 @@
 		F19E062B2787B6E900D4D811 /* Reed&MeetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Reed&MeetUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19E062F2787B6E900D4D811 /* Reed_MeetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reed_MeetUITests.swift; sourceTree = "<group>"; };
 		F19E06312787B6E900D4D811 /* Reed_MeetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reed_MeetUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F19E063E2787C3ED00D4D811 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +80,7 @@
 		F19E06022787B6E600D4D811 = {
 			isa = PBXGroup;
 			children = (
+				F19E063E2787C3ED00D4D811 /* CHANGELOG.md */,
 				F19E060D2787B6E600D4D811 /* Reed&Meet */,
 				F19E06242787B6E900D4D811 /* Reed&MeetTests */,
 				F19E062E2787B6E900D4D811 /* Reed&MeetUITests */,
