@@ -2,6 +2,7 @@
 
 All notable changes to this project will be documented in this file
 
+[N/A] Bugfix: Change Float to CGFloat in AutoLayout
 [N/A] Config: Common - Add AutoLayout
 [N/A] Config: Bump Nimble to 9.2.1
 [N/A] Refactor: Refactor files
