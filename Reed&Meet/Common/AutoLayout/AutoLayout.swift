@@ -35,11 +35,11 @@ class AutoLayout {
         constraints.forEach { $0.priority = priority }
         constraints.activate()
     }
-    
+
     @discardableResult
     func top(alignedWith view: UIView,
              relation: NSLayoutConstraintType = .equal,
-             offSet: Float = 0,
+             offSet: CGFloat = 0,
              priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.top(firstView: self.view,
@@ -51,11 +51,11 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func left(alignedWith: UIView,
               relation: NSLayoutConstraintType = .equal,
-              offSet: Float = 0,
+              offSet: CGFloat = 0,
               priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.left(firstView: self.view,
@@ -67,11 +67,11 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func right(alignedWith: UIView,
                relation: NSLayoutConstraintType = .equal,
-               offSet: Float = 0,
+               offSet: CGFloat = 0,
                priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.right(firstView: self.view,
@@ -83,11 +83,11 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func bottom(alignedWith: UIView,
                 relation: NSLayoutConstraintType = .equal,
-                offSet: Float = 0,
+                offSet: CGFloat = 0,
                 priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.bottom(firstView: self.view,
@@ -99,11 +99,11 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func baseLine(alignedWith: UIView,
                   relation: NSLayoutConstraintType = .equal,
-                  offSet: Float = 0) -> NSLayoutConstraint {
+                  offSet: CGFloat = 0) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.baseLine(firstView: self.view,
                                                      secondView: alignedWith,
@@ -113,11 +113,11 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func under(view: UIView,
                relation: NSLayoutConstraintType = .equal,
-               offSet: Float = 0,
+               offSet: CGFloat = 0,
                priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.over(topItem: view,
@@ -129,11 +129,11 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func above(view: UIView,
                relation: NSLayoutConstraintType = .equal,
-               offSet: Float = 0,
+               offSet: CGFloat = 0,
                priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.over(topItem: self.view,
@@ -145,11 +145,11 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func right(of view: UIView,
                relation: NSLayoutConstraintType = .equal,
-               offSet: Float = 0) -> NSLayoutConstraint {
+               offSet: CGFloat = 0) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.aside(left: view,
                                                   right: self.view,
@@ -159,11 +159,11 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func left(of view: UIView,
               relation: NSLayoutConstraintType = .equal,
-              offSet: Float = 0) -> NSLayoutConstraint {
+              offSet: CGFloat = 0) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.aside(left: self.view,
                                                   right: view,
@@ -173,13 +173,13 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func height(relatedTo view: UIView,
                 relation: NSLayoutConstraintType = .equal,
                 priority: UILayoutPriority = .required,
                 multiplier: CGFloat = 1,
-                _ size: Float = 0) -> NSLayoutConstraint {
+                _ size: CGFloat = 0) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.height(firstView: self.view,
                                                    secondView: view,
@@ -191,11 +191,11 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func height(relation: NSLayoutConstraintType = .equal,
                 priority: UILayoutPriority = .required,
-                _ size: Float = 0) -> NSLayoutConstraint {
+                _ size: CGFloat = 0) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.height(view: self.view,
                                                    relation: relation,
@@ -205,7 +205,7 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func height(equalTo dimension: NSLayoutDimension,
                 priority: UILayoutPriority = .required,
@@ -214,12 +214,12 @@ class AutoLayout {
         
         return anchor(\.heightAnchor, to: dimension, priority: priority, multiplier: multiplier, size)
     }
-    
+
     @discardableResult
     func widht(relatedTo view: UIView,
                relation: NSLayoutConstraintType = .equal,
                multiplier: CGFloat = 1,
-               _ size: Float = 0) -> NSLayoutConstraint {
+               _ size: CGFloat = 0) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.width(firstView: self.view,
                                                   secondView: view,
@@ -229,10 +229,10 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func width(relation: NSLayoutConstraintType = .equal,
-               _ size: Float) -> NSLayoutConstraint {
+               _ size: CGFloat) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.width(view: self.view,
                                                   relation: relation,
@@ -240,7 +240,7 @@ class AutoLayout {
         constraint.isActive = true
         return constraint
     }
-    
+
     @discardableResult
     func width(equalTo dimension: NSLayoutDimension,
                priority: UILayoutPriority = .required,
@@ -249,7 +249,7 @@ class AutoLayout {
         
         return anchor(\.widthAnchor, to: dimension, priority: priority, multiplier: multiplier, size)
     }
-    
+
     @discardableResult
     func topSafeArea(alignedWith: UIView,
                      relation: NSLayoutConstraintType = .equal,
@@ -264,9 +264,9 @@ class AutoLayout {
         
         return constraint
     }
-    
+
     func size(relation: NSLayoutConstraintType = .equal,
-              _ size: Float) {
+              _ size: CGFloat) {
         width(relation: relation, size)
         height(relation: relation, size)
     }
@@ -275,7 +275,7 @@ class AutoLayout {
     func verticalCenter(view: UIView,
                         relation: NSLayoutConstraintType = .equal,
                         attribute: NSLayoutConstraint.Attribute = .centerY,
-                        offSet: Float = 0) -> NSLayoutConstraint {
+                        offSet: CGFloat = 0) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.centerY(firstView: self.view,
                                                     secondView: view,
@@ -290,7 +290,7 @@ class AutoLayout {
     @discardableResult
     func horizontalCenter(view: UIView,
                           relation: NSLayoutConstraintType = .equal,
-                          offSet: Float = 0,
+                          offSet: CGFloat = 0,
                           priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         
         let constraint = NSLayoutConstraint.centerX(firstView: self.view,
@@ -305,7 +305,7 @@ class AutoLayout {
     
     func center(in view: UIView,
                 relation: NSLayoutConstraintType = .equal,
-                offSet: Float = 0) {
+                offSet: CGFloat = 0) {
         
         horizontalCenter(view: view, relation: relation, offSet: offSet)
         verticalCenter(view: view, relation: relation, offSet: offSet)
