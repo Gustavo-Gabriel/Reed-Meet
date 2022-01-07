@@ -23,6 +23,7 @@
 		F1BD2C2E2788C7B70024E7DC /* NSLayoutConstraint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD2C2D2788C7B70024E7DC /* NSLayoutConstraint+Ext.swift */; };
 		F1BD2C302788C7F50024E7DC /* AutoLayout+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD2C2F2788C7F50024E7DC /* AutoLayout+Ext.swift */; };
 		F1BD2C332788C9450024E7DC /* AutoLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD2C322788C9450024E7DC /* AutoLayoutTests.swift */; };
+		F1BD2C372788E30D0024E7DC /* CGRect+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BD2C362788E30D0024E7DC /* CGRect+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		F1BD2C2D2788C7B70024E7DC /* NSLayoutConstraint+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Ext.swift"; sourceTree = "<group>"; };
 		F1BD2C2F2788C7F50024E7DC /* AutoLayout+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoLayout+Ext.swift"; sourceTree = "<group>"; };
 		F1BD2C322788C9450024E7DC /* AutoLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutTests.swift; sourceTree = "<group>"; };
+		F1BD2C362788E30D0024E7DC /* CGRect+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		F19E060D2787B6E600D4D811 /* Reed&Meet */ = {
 			isa = PBXGroup;
 			children = (
+				F1BD2C352788E2DF0024E7DC /* DesignSystem */,
 				F1BD2C272788C6AD0024E7DC /* Common */,
 				F19E060E2787B6E600D4D811 /* AppDelegate.swift */,
 				F19E06102787B6E600D4D811 /* SceneDelegate.swift */,
@@ -181,7 +184,7 @@
 		F1BD2C272788C6AD0024E7DC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				F1BD2C282788C6D20024E7DC /* AutoLayout */,
+				F1BD2C342788E2D40024E7DC /* Helper */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -203,6 +206,22 @@
 				F1BD2C322788C9450024E7DC /* AutoLayoutTests.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		F1BD2C342788E2D40024E7DC /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F1BD2C362788E30D0024E7DC /* CGRect+Ext.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		F1BD2C352788E2DF0024E7DC /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				F1BD2C282788C6D20024E7DC /* AutoLayout */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,6 +469,7 @@
 				F1BD2C2A2788C6E40024E7DC /* AutoLayout.swift in Sources */,
 				F19E06112787B6E600D4D811 /* SceneDelegate.swift in Sources */,
 				F1BD2C302788C7F50024E7DC /* AutoLayout+Ext.swift in Sources */,
+				F1BD2C372788E30D0024E7DC /* CGRect+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
