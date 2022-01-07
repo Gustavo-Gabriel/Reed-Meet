@@ -1,0 +1,6 @@
+framework module Pods_Reed_Meet_Reed_MeetUITests {
+  umbrella header "Pods-Reed&Meet-Reed&MeetUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
