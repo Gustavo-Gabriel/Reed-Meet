@@ -13,6 +13,7 @@ target 'Reed&Meet' do
     # Pods for testing
     pod 'Quick'
     pod 'Nimble'
+    pod 'Nimble-Snapshots'
   end
 
   target 'Reed&MeetUITests' do
