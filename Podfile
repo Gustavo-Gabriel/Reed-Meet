@@ -6,12 +6,13 @@ target 'Reed&Meet' do
   use_frameworks!
 
   # Pods for Reed&Meet
-  
   pod 'SwiftLint', '~> 0.45.1'
 
   target 'Reed&MeetTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Quick'
+    pod 'Nimble'
   end
 
   target 'Reed&MeetUITests' do

@@ -199,6 +199,7 @@
 				F19E061D2787B6E900D4D811 /* Sources */,
 				F19E061E2787B6E900D4D811 /* Frameworks */,
 				F19E061F2787B6E900D4D811 /* Resources */,
+				A44BC9D985D8409624071534 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -300,6 +301,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		A44BC9D985D8409624071534 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reed&MeetTests/Pods-Reed&MeetTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reed&MeetTests/Pods-Reed&MeetTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Reed&MeetTests/Pods-Reed&MeetTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AA6AF683BF1155E2CEA8AD24 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
